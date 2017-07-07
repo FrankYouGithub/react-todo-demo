@@ -6,14 +6,14 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname,'dist')
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            output: {
-                comments: false
-            }
-        })
-    ]
+    // plugins: [
+    //     new webpack.optimize.UglifyJsPlugin({
+    //         compress: {
+    //             warnings: false
+    //         },
+    //         output: {
+    //             comments: false
+    //         }
+    //     })
+    // ]
 };
