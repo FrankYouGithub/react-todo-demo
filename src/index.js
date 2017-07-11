@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import Welcome from './welcome';
 // function tick() {
 //   const element = (
 //     <div>
@@ -18,7 +17,6 @@ import Welcome from './welcome';
 // }
 // setInterval(tick, 1000);
 
-ReactDOM.render(
-  <Welcome name="youhuakun"/>,
-  document.getElementById('root2')
-)
+// ReactDOM.render(
+//   document.getElementById('root2')
+// )
