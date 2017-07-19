@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
@@ -38,8 +37,10 @@ class App extends Component {
     );
   }
   onSignUp(user){
-    this.state.user = user
-    this.setState(this.state)
+    //消除 不要直接修改state 的警告
+    let stateCopy = JSON.parse(JSON.stringify(this.state))
+    stateCopy.user = user
+    this.setState(stateCopy)
   }
   delete(e,todo){
     todo.deleted = true
