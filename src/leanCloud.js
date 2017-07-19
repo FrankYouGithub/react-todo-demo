@@ -17,7 +17,6 @@ export function signUp(username,password,successFn,errorFn){
   user.setUsername(username);
   // 设置密码
   user.setPassword(password);
-  console.log(username,password,"==============================")
   user.signUp().then(function (loginedUser) {
     let user = getUserFormAVUser(loginedUser)
     console.log(user)
