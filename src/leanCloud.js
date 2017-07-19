@@ -9,3 +9,27 @@ AV.init({
 });
 
 export default AV
+
+export function signUp(username,password,successFn,errorFn){
+  //新建AVUser对象实例
+  var user = new AV.User();
+  /// 设置用户名
+  user.setUsername(user);
+  // 设置密码
+  user.setPassword(password);
+  console.log(username,password,"==============================")
+  user.signUp().then(function (loginedUser) {
+    let user = getUserFormAVUser(loginedUser)
+    console.log(user)
+    successFn.call(null,user)
+  }, function (error) {
+    errorFn.call(null,error)
+  });
+  return undefined
+}
+function getUserFormAVUser(AVUser){
+  return {
+    id: AVUser.id,
+    ...AVUser.attributes
+  }
+}
