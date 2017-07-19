@@ -14,7 +14,7 @@ export function signUp(username,password,successFn,errorFn){
   //新建AVUser对象实例
   var user = new AV.User();
   /// 设置用户名
-  user.setUsername(user);
+  user.setUsername(username);
   // 设置密码
   user.setPassword(password);
   console.log(username,password,"==============================")
@@ -23,6 +23,7 @@ export function signUp(username,password,successFn,errorFn){
     console.log(user)
     successFn.call(null,user)
   }, function (error) {
+    console.log(error)
     errorFn.call(null,error)
   });
   return undefined
