@@ -25,7 +25,22 @@
        this.props.onSignUp.call(null,user)
      }
      let error = (error)=>{
-       alert(error)
+       switch(error.code){
+          case 201:
+           alert('没有提供密码，或者密码为空')
+           break
+          case 202:
+           alert('用户名已被占用')
+           break
+          case 217:
+          alert(' 无效的用户名，不允许空白用户名')
+          break
+          case 218:
+          alert(' 无效的密码，不允许空白密码')
+          break
+         default:
+           alert(error)
+       }
     }
      signUp(username, password, success, error)
     }
@@ -36,7 +51,19 @@
         this.props.onSignIn.call(null,user)
       }
       let error = (error)=>{
-        alert(error)
+        switch(error.code){
+          case 201:
+           alert('没有提供密码，或者密码为空。')
+           break
+          case 210:
+           alert('用户名与密码不匹配')
+           break
+          case 211:
+           alert('找不到用户。')
+           break
+         default:
+           alert(error)
+       }
       }
       signIn(username, password, success, error)
     }
