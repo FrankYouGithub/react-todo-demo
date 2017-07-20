@@ -10,6 +10,15 @@ AV.init({
 
 export default AV
 
+export function signIn(username,password,successFn,errorFn){
+  AV.User.logIn(username,password).then(function(loginedUser){
+    let user = getUserFormAVUser(loginedUser)
+    successFn.call(null,user)
+  },function(error){
+    errorFn.call(null,error)
+  })
+}
+
 export function signUp(username,password,successFn,errorFn){
   //新建AVUser对象实例
   var user = new AV.User();
@@ -39,7 +48,6 @@ export function signOut(){
 }
 export function getCurrentUser(){
   let user = AV.User.current();
-  console.log(user.id)
   if(user){
     return getUserFormAVUser(user)
   }else{
