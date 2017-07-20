@@ -33,3 +33,12 @@ function getUserFormAVUser(AVUser){
     ...AVUser.attributes
   }
 }
+
+export function getCurrentUser(){
+  let user = AV.User.current();
+  if(user){
+    return getUserFormAVUser()
+  }else{
+    return null
+  }
+}
