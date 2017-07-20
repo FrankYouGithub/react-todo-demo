@@ -33,11 +33,15 @@ function getUserFormAVUser(AVUser){
     ...AVUser.attributes
   }
 }
-
+export function signOut(){
+  AV.User.logOut()
+  return undefined
+}
 export function getCurrentUser(){
   let user = AV.User.current();
+  console.log(user.id)
   if(user){
-    return getUserFormAVUser()
+    return getUserFormAVUser(user)
   }else{
     return null
   }
