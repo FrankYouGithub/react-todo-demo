@@ -23,9 +23,6 @@ todoFolder.save().then(function (todo) {
   console.error(error);
 });
 
-
-
-
 class App extends Component {
   constructor(props){
     super(props)
