@@ -75,7 +75,15 @@ class App extends Component {
     })
   }
   toggle(e,todo){
+    let oldStatus = todo.status
     todo.status = todo.status === 'completed'? '': 'completed'
+    TodoModel.update(todo,() => {
+      this.setState(this.state)
+    },(error) => {
+      console.log(error)
+      todo.status = oldStatus
+      this.setState(this.state)
+    })
     this.setState(this.state)
   }
   changeTitle(event){
@@ -87,7 +95,7 @@ class App extends Component {
   addTodo(event){
     let newTodo = {
       title: event.target.value,
-      status: null,
+      status: '',
       deleted: false
     }
     TodoModel.create(newTodo,(id) => {
