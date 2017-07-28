@@ -54,12 +54,18 @@ class App extends Component {
     signOut()
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = {}
+    stateCopy.todoList = []
     this.setState(stateCopy)
   }
   onSignUpOrSignIn(user){
     //消除 不要直接修改state 的警告
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = user
+    TodoModel.getByUser(user,(todos) => {
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.todoList = todos
+        this.setState(stateCopy)
+      })
     this.setState(stateCopy)
   }
   delete(e,todo){

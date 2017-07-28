@@ -20,6 +20,7 @@ export const TodoModel = {
       })
       successFn.call(null,array)
     },(error) => {
+      console.log(error)
       errorFn && errorFn.call(null,error)
     })
   },
@@ -29,10 +30,20 @@ export const TodoModel = {
     todo.set('title',title)
     todo.set('status',status)
     todo.set('deleted',deleted)
+    // 新建一个 ACL 实例
+    let acl = new AV.ACL()
+    acl.setPublicReadAccess(false)
+    console.log('=======')
+    console.log(AV.User.current())
+    acl.setWriteAccess(AV.User.current(),true)
+    acl.setReadAccess(AV.User.current(),true)
+    //将ACL实例赋予todo对象
+    todo.setACL(acl)
+
     todo.save().then(function (response){
       successFn.call(null,response.id)
     },function(error){
-      errorFn.call(null,error)
+      errorFn && errorFn.call(null,error)
     });
   },
   update(){
