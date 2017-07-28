@@ -18,6 +18,7 @@ export const TodoModel = {
         console.log(...t.attributes.title+'--------'+user.username+'--------'+t.id)
         return{id:t.id,...t.attributes}
       })
+      console.log(array)
       successFn.call(null,array)
     },(error) => {
       console.log(error)
@@ -49,8 +50,13 @@ export const TodoModel = {
   update(){
 
   },
-  destroy(){
-
+  destroy(todoId,successFn,errorFn){
+    let todo = AV.Object.createWithoutData('Todo', todoId)
+    todo.destroy().then(function(success){
+      successFn && successFn.call(null)
+    },function(error){
+      errorFn && errorFn.call(null,error)
+    })
   }
 }
 
