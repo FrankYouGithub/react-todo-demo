@@ -25,6 +25,8 @@ function changeTitle(props,e){
 }
 function submit(props,e){
     if (e.key === 'Enter') {
-        props.onSubmit(e)
+        if (e.target.value.trim() !== '') {
+            props.onSubmit(e)
+        }
     }
 }
